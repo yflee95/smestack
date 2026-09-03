@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SME Stack
 
-## Getting Started
+An English software comparison and selection site for Malaysian SMEs. The MVP
+contains source-backed product profiles, direct comparisons, need-based buying
+guides and a rules-based finder.
 
-First, run the development server:
+## Local development
+
+Copy `.env.example` to `.env.local`, then set the final public URL when known.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Content model and quality gate
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `src/data/software.ts` holds vendor facts, sources and review dates.
+- `src/data/comparisons.ts` holds curated head-to-head conclusions.
+- `src/data/needs.ts` holds intent-led shortlists.
+- `src/lib/validate-data.ts` runs during static generation. It rejects missing
+  sources, stale records, thin profiles and broken cross-references.
 
-## Learn More
+Do not create keyword-swap city pages. Add a route only when its records contain
+real, page-specific data and a distinct user task.
 
-To learn more about Next.js, take a look at the following resources:
+## Monetisation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+`referralUrl` is intentionally empty at launch. Only add it after the site owner
+is accepted to the relevant partner programme and reviews its terms. Direct
+official links remain non-sponsored; populated referral links automatically use
+the appropriate sponsored relationship.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Outbound CTA and finder completion events are exposed to Plausible when
+`NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is configured.
 
-## Deploy on Vercel
+## Launch checklist
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Domain purchased: `smestack.my`.
+2. Set `NEXT_PUBLIC_SITE_URL=https://smestack.my` in Vercel project settings (and locally in `.env.local`).
+3. Deploy on Vercel, attach the domain, then verify `/sitemap.xml` and `/robots.txt`.
+4. Add `smestack.my` in Google Search Console and submit `https://smestack.my/sitemap.xml`.
+5. Apply to partner programmes personally; add approved referral URLs.
+6. Review product sources at least annually and whenever pricing or regulation
+   changes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Attach smestack.my on Vercel
+
+1. Import the `malaysia-sme-software-finder` folder as a Vercel project (Node 20+).
+2. Environment variable: `NEXT_PUBLIC_SITE_URL` = `https://smestack.my`.
+3. Project → Settings → Domains → add `smestack.my` and `www.smestack.my`.
+4. In Exabytes DNS, follow Vercel’s records (usually an A record to `10.0.1.2` for the apex, and a CNAME for `www`). Wait for Vercel to show a valid SSL certificate before submitting Search Console.
