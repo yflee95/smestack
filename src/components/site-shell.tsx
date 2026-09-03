@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { MobileNav } from "@/components/mobile-nav";
+import { SiteLogo } from "@/components/site-logo";
 
 const navigation = [
   { href: "/software", label: "Software" },
@@ -13,10 +14,11 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line/80 bg-background/90 backdrop-blur">
       <div className="relative mx-auto flex h-16 max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 font-bold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-xl bg-brand text-sm text-white">
-            S
-          </span>
+        <Link
+          href="/"
+          className="flex items-center gap-2 font-bold tracking-tight"
+        >
+          <SiteLogo />
           SME Stack
         </Link>
         <nav className="hidden items-center gap-7 text-sm font-medium md:flex" aria-label="Primary">
@@ -49,7 +51,10 @@ export function SiteFooter() {
     <footer className="mt-24 border-t border-line bg-brand-dark text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.4fr_1fr_1fr] lg:px-8">
         <div>
-          <p className="text-lg font-bold">SME Stack</p>
+          <p className="flex items-center gap-2 text-lg font-bold">
+            <SiteLogo className="h-8 w-8 ring-1 ring-white/25" />
+            SME Stack
+          </p>
           <p className="mt-3 max-w-md text-sm leading-6 text-white/70">
             Source-backed software research for Malaysian SMEs. We may earn a
             referral fee, but placement is never sold.

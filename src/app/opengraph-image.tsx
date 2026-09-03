@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { BrandMarkGraphic } from "@/lib/brand-mark";
 
 export const alt = "SME Stack — Malaysia Software Finder";
 export const size = { width: 1200, height: 630 };
@@ -23,11 +24,13 @@ export default function OpenGraphImage() {
           style={{
             display: "flex",
             alignItems: "center",
+            gap: 14,
             fontSize: 28,
             fontWeight: 700,
             letterSpacing: -0.5,
           }}
         >
+          <BrandMarkGraphic box={44} bar={5} gap={3} />
           SME Stack
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>

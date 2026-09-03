@@ -63,7 +63,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                 url: siteConfig.url,
                 email: siteConfig.email,
                 description: siteConfig.description,
-                logo: absoluteUrl("/opengraph-image"),
+                logo: {
+                  "@type": "ImageObject",
+                  url: absoluteUrl("/icon"),
+                  width: 192,
+                  height: 192,
+                },
               },
               {
                 "@type": "WebSite",
