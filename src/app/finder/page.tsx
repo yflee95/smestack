@@ -27,6 +27,18 @@ export default function FinderPage() {
         <div className="mt-12">
           <FinderClient products={software} />
         </div>
+        <aside className="mx-auto mt-16 max-w-3xl rounded-3xl border border-line bg-surface p-6 sm:p-8">
+          <h2 className="text-xl font-bold tracking-tight">
+            How the shortlist is scored
+          </h2>
+          <p className="mt-3 leading-7 text-muted">
+            Matching is a published rule set, not a paid ranking. Category fit
+            scores highest, then business size and industry, then whether you
+            asked for cloud-only or a flexible desktop/partner setup. Only the
+            top three matches are shown. If nothing scores, browse the full
+            directory instead of treating an empty result as a recommendation.
+          </p>
+        </aside>
       </section>
     </PageContainer>
   );

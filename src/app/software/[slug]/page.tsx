@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { OutboundLink } from "@/components/outbound-link";
+import { VendorCta } from "@/components/vendor-cta";
 import { Eyebrow, PageContainer } from "@/components/site-shell";
 import { SoftwareCard } from "@/components/software-card";
 import { comparisons } from "@/data/comparisons";
@@ -59,7 +60,7 @@ export default async function SoftwareProfile({
       {
         "@type": "SoftwareApplication",
         name: product.name,
-        applicationCategory: product.categories.join(", "),
+        applicationCategory: "BusinessApplication",
         operatingSystem: "See vendor requirements",
         description: product.summary,
         url: absoluteUrl(`/software/${product.slug}`),
@@ -108,19 +109,11 @@ export default async function SoftwareProfile({
               {product.summary}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <OutboundLink
-                href={product.referralUrl ?? product.officialUrl}
-                vendor={product.name}
+              <VendorCta
+                product={product}
                 placement="profile_hero"
-                rel={
-                  product.referralUrl
-                    ? "sponsored nofollow noopener"
-                    : "noopener noreferrer"
-                }
                 className="rounded-full bg-brand px-6 py-3 text-sm font-bold text-white hover:bg-brand-dark"
-              >
-                Visit vendor website ↗
-              </OutboundLink>
+              />
               <Link
                 href="/finder"
                 className="rounded-full border border-line bg-white px-6 py-3 text-sm font-bold"

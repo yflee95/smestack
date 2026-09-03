@@ -46,6 +46,7 @@ export default async function NeedGuidePage({
     "@graph": [
       {
         "@type": "ItemList",
+        itemListOrder: "https://schema.org/ItemListUnordered",
         name: guide.title,
         description: guide.description,
         url: absoluteUrl(`/needs/${guide.slug}`),

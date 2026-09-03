@@ -28,10 +28,9 @@ export default function DisclosurePage() {
         </p>
         <h2>Current launch status</h2>
         <p>
-          At launch, vendor links are direct official links unless explicitly
-          marked as affiliate links. Referral identifiers will only be added
-          after a partner programme accepts the publisher and the commercial
-          terms are reviewed.
+          Vendor buttons go to the official site until a partner programme
+          gives SME Stack a tracking link. Those links are added through
+          environment variables, not by selling a higher ranking.
         </p>
         <h2>Use your own judgement</h2>
         <p>

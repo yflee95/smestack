@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { OutboundLink } from "@/components/outbound-link";
 import { Eyebrow, PageContainer } from "@/components/site-shell";
+import { VendorCta } from "@/components/vendor-cta";
 import {
   comparisons,
   getComparison,
@@ -192,19 +192,12 @@ export default async function ComparisonPage({
                 >
                   Read profile
                 </Link>
-                <OutboundLink
-                  href={product.referralUrl ?? product.officialUrl}
-                  vendor={product.name}
+                <VendorCta
+                  product={product}
                   placement={`comparison_${comparison.slug}`}
-                  rel={
-                    product.referralUrl
-                      ? "sponsored nofollow noopener"
-                      : "noopener noreferrer"
-                  }
+                  label="Visit vendor ↗"
                   className="rounded-full bg-brand px-4 py-2 text-sm font-bold text-white"
-                >
-                  Visit vendor ↗
-                </OutboundLink>
+                />
               </div>
             </div>
           ))}

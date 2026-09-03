@@ -3,11 +3,8 @@ import { needGuides } from "@/data/needs";
 import type { SoftwareProduct } from "@/data/software";
 
 export function needsForProduct(product: SoftwareProduct) {
-  return needGuides.filter(
-    (guide) =>
-      guide.recommendedSlugs.includes(product.slug) ||
-      (guide.category !== undefined &&
-        product.categories.includes(guide.category)),
+  return needGuides.filter((guide) =>
+    guide.recommendedSlugs.includes(product.slug),
   );
 }
 

@@ -4,7 +4,7 @@ import Script from "next/script";
 import type { ReactNode } from "react";
 import { SiteFooter, SiteHeader } from "@/components/site-shell";
 import { JsonLd } from "@/lib/json-ld";
-import { siteConfig } from "@/lib/site";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -19,6 +19,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
+  robots: { index: true, follow: true },
   title: {
     default: "SME Stack — Malaysia Software Finder",
     template: "%s | SME Stack",
@@ -28,6 +29,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_MY",
     siteName: siteConfig.name,
+    url: siteConfig.url,
     title: "SME Stack — Malaysia Software Finder",
     description: siteConfig.description,
   },
@@ -41,7 +43,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
-      lang="en"
+      lang="en-MY"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
@@ -54,11 +56,24 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <JsonLd
           data={{
             "@context": "https://schema.org",
-            "@type": "Organization",
-            name: siteConfig.name,
-            url: siteConfig.url,
-            email: siteConfig.email,
-            description: siteConfig.description,
+            "@graph": [
+              {
+                "@type": "Organization",
+                name: siteConfig.name,
+                url: siteConfig.url,
+                email: siteConfig.email,
+                description: siteConfig.description,
+                logo: absoluteUrl("/opengraph-image"),
+              },
+              {
+                "@type": "WebSite",
+                name: siteConfig.name,
+                url: siteConfig.url,
+                description: siteConfig.description,
+                inLanguage: "en-MY",
+                publisher: { "@type": "Organization", name: siteConfig.name },
+              },
+            ],
           }}
         />
         <SiteHeader />

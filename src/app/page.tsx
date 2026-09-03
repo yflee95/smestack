@@ -8,7 +8,10 @@ import { software } from "@/data/software";
 import { validateCatalog } from "@/lib/validate-data";
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/" },
+  alternates: {
+    canonical: "/",
+    languages: { "en-MY": "/", "x-default": "/" },
+  },
 };
 
 export default function Home() {

@@ -6,6 +6,7 @@ import {
 } from "@/data/editorial";
 import { needGuides } from "@/data/needs";
 import { software, softwareBySlug } from "@/data/software";
+import { referralOverride } from "@/lib/vendor-cta";
 
 let validated = false;
 
@@ -54,6 +55,11 @@ export function validateCatalog() {
     ] as const) {
       if (!value) continue;
       assertHttpsUrl(`${product.slug}.${field}`, value);
+    }
+
+    const envReferral = referralOverride(product.slug);
+    if (envReferral) {
+      assertHttpsUrl(`${product.slug}.envReferral`, envReferral);
     }
 
     const ageInDays =
