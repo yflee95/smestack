@@ -3,9 +3,12 @@ import type { SoftwareProduct } from "@/data/software";
 
 export function SoftwareCard({ product }: { product: SoftwareProduct }) {
   return (
-    <article className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 transition hover:-translate-y-0.5 hover:border-brand/40">
+    <Link
+      href={`/software/${product.slug}`}
+      className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-6 elevated transition duration-200 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
+    >
       <div className="flex items-start justify-between gap-4">
-        <div className="grid h-11 w-11 place-items-center rounded-2xl bg-brand/10 text-lg font-bold text-brand">
+        <div className="grid h-11 w-11 place-items-center rounded-2xl border border-brand/10 bg-brand/10 text-lg font-bold text-brand transition group-hover:bg-brand group-hover:text-white">
           {product.name.slice(0, 1)}
         </div>
         <span className="rounded-full bg-background px-3 py-1 text-xs font-semibold text-muted">
@@ -24,12 +27,10 @@ export function SoftwareCard({ product }: { product: SoftwareProduct }) {
           </span>
         ))}
       </div>
-      <Link
-        href={`/software/${product.slug}`}
-        className="mt-6 text-sm font-bold text-brand group-hover:underline"
-      >
-        Read independent profile →
-      </Link>
-    </article>
+      <span className="mt-6 flex items-center justify-between text-sm font-bold text-brand">
+        Read independent profile
+        <span className="transition-transform group-hover:translate-x-1">→</span>
+      </span>
+    </Link>
   );
 }

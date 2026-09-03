@@ -25,16 +25,21 @@ export function SoftwareDirectoryClient() {
 
   return (
     <>
-      <div className="mt-8 flex flex-wrap gap-2">
+      <div
+        className="mt-8 flex flex-wrap gap-2 rounded-2xl border border-line bg-white/70 p-2 elevated"
+        role="group"
+        aria-label="Filter software by category"
+      >
         {categories.map((item) => (
           <button
             key={item}
             type="button"
             onClick={() => setSelected(item)}
-            className={`rounded-full px-4 py-2 text-sm font-semibold ${
+            aria-pressed={selected === item}
+            className={`rounded-xl px-4 py-2 text-sm font-semibold transition duration-200 ${
               selected === item
-                ? "bg-brand text-white"
-                : "border border-line bg-white text-muted"
+                ? "bg-brand text-white shadow-sm"
+                : "text-muted hover:bg-background hover:text-foreground"
             }`}
           >
             {item}

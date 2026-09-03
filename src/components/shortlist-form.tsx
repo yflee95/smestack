@@ -109,7 +109,7 @@ export function ShortlistForm() {
       </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Your name" htmlFor="lead-name">
+        <Field label="Your name *" htmlFor="lead-name">
           <input
             id="lead-name"
             className="field"
@@ -122,7 +122,7 @@ export function ShortlistForm() {
             maxLength={80}
           />
         </Field>
-        <Field label="Work email" htmlFor="lead-email">
+        <Field label="Work email *" htmlFor="lead-email">
           <input
             id="lead-email"
             type="email"
@@ -151,7 +151,7 @@ export function ShortlistForm() {
       </Field>
 
       <div className="grid gap-5 sm:grid-cols-2">
-        <Field label="Industry" htmlFor="lead-industry">
+        <Field label="Industry *" htmlFor="lead-industry">
           <select
             id="lead-industry"
             className="field"
@@ -169,7 +169,7 @@ export function ShortlistForm() {
             ))}
           </select>
         </Field>
-        <Field label="Team size" htmlFor="lead-size">
+        <Field label="Team size *" htmlFor="lead-size">
           <select
             id="lead-size"
             className="field"
@@ -190,17 +190,19 @@ export function ShortlistForm() {
       </div>
 
       <fieldset>
-        <legend className="text-sm font-semibold">What must the software cover?</legend>
+        <legend className="text-sm font-semibold">
+          What must the software cover? *
+        </legend>
         <div className="mt-3 flex flex-wrap gap-2">
           {jobs.map((job) => {
             const selected = form.jobs.includes(job);
             return (
               <label
                 key={job}
-                className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold ${
+                className={`cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition duration-200 ${
                   selected
-                    ? "bg-brand text-white"
-                    : "border border-line bg-white text-muted"
+                    ? "border-brand bg-brand text-white shadow-sm"
+                    : "border-line bg-white text-muted hover:border-brand hover:text-foreground"
                 }`}
               >
                 <input
@@ -209,6 +211,7 @@ export function ShortlistForm() {
                   checked={selected}
                   onChange={() => toggleJob(job)}
                 />
+                {selected ? "✓ " : ""}
                 {job}
               </label>
             );
@@ -236,9 +239,9 @@ export function ShortlistForm() {
 
       <button
         type="submit"
-        className="rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-white hover:bg-brand-dark"
+        className="rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg"
       >
-        Open email to request a shortlist
+        Open email to request a shortlist <span aria-hidden="true">→</span>
       </button>
       <p className="text-sm leading-6 text-muted">
         This opens your email app with the details filled in. Nothing is stored

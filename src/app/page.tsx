@@ -22,7 +22,7 @@ export default function Home() {
     <>
       <section className="mesh overflow-hidden border-b border-line">
         <PageContainer>
-          <div className="grid items-center gap-14 py-12 sm:py-20 lg:min-h-[640px] lg:grid-cols-[1.08fr_.92fr]">
+          <div className="grid items-center gap-14 py-14 sm:py-20 lg:min-h-[680px] lg:grid-cols-[1.08fr_.92fr]">
             <div>
               <Eyebrow>Malaysia SME software, made simpler</Eyebrow>
               <h1 className="max-w-3xl text-5xl font-bold leading-[1.03] tracking-[-0.055em] sm:text-6xl lg:text-7xl">
@@ -37,13 +37,13 @@ export default function Home() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/finder"
-                  className="rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-white transition hover:bg-brand-dark"
+                  className="rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg"
                 >
-                  Start the free finder
+                  Start the free finder <span aria-hidden="true">→</span>
                 </Link>
                 <Link
                   href="/software"
-                  className="rounded-full border border-line bg-white px-6 py-3.5 text-sm font-bold transition hover:border-brand"
+                  className="rounded-full border border-line bg-white px-6 py-3.5 text-sm font-bold elevated transition duration-200 hover:-translate-y-0.5 hover:border-brand"
                 >
                   Browse all software
                 </Link>
@@ -54,15 +54,24 @@ export default function Home() {
                   Request a human shortlist
                 </Link>
               </div>
-              <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
-                <span>10 researched products</span>
-                <span>8 direct comparisons</span>
-                <span>No pay-to-rank lists</span>
+              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-muted">
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                  10 researched products
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                  8 direct comparisons
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+                  No pay-to-rank lists
+                </span>
               </div>
             </div>
 
-            <div className="dot-grid rounded-[2rem] border border-line bg-surface p-5 sm:p-8">
-              <div className="rounded-3xl border border-line bg-white p-6">
+            <div className="dot-grid reveal reveal-delay rounded-[2rem] border border-line bg-surface/80 p-4 elevated-lg sm:p-7">
+              <div className="rounded-[1.5rem] border border-line bg-white p-6 elevated sm:p-7">
                 <p className="text-xs font-bold uppercase tracking-[0.16em] text-brand">
                   Quick shortlist
                 </p>
@@ -79,10 +88,10 @@ export default function Home() {
                     <Link
                       key={href}
                       href={href}
-                      className="flex items-center justify-between rounded-2xl border border-line bg-background px-4 py-3 text-sm font-semibold transition hover:border-brand hover:bg-white"
+                      className="group flex items-center justify-between rounded-2xl border border-line bg-background px-4 py-3.5 text-sm font-semibold transition duration-200 hover:-translate-y-0.5 hover:border-brand hover:bg-white hover:shadow-sm"
                     >
                       {label}
-                      <span className="text-brand">→</span>
+                      <span className="text-brand transition-transform group-hover:translate-x-1">→</span>
                     </Link>
                   ))}
                 </div>
@@ -99,7 +108,7 @@ export default function Home() {
       </section>
 
       <PageContainer>
-        <section className="py-20">
+        <section className="py-20 sm:py-24">
           <div className="flex items-end justify-between gap-6">
             <div>
               <Eyebrow>Starting shortlists</Eyebrow>
@@ -107,7 +116,10 @@ export default function Home() {
                 Popular with Malaysian SMEs
               </h2>
             </div>
-            <Link href="/software" className="hidden text-sm font-bold text-brand sm:block">
+            <Link
+              href="/software"
+              className="hidden text-sm font-bold text-brand hover:underline sm:block"
+            >
               View all software →
             </Link>
           </div>
@@ -118,10 +130,14 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="rounded-[2rem] bg-brand-dark px-6 py-12 text-white sm:px-10 lg:px-14">
+        <section className="relative overflow-hidden rounded-[2rem] bg-brand-dark px-6 py-12 text-white elevated-lg sm:px-10 lg:px-14">
+          <div
+            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full border border-white/10"
+            aria-hidden="true"
+          />
           <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr]">
             <div>
-              <Eyebrow>Comparison, not promotion</Eyebrow>
+              <Eyebrow className="text-accent">Comparison, not promotion</Eyebrow>
               <h2 className="text-3xl font-bold tracking-tight">
                 Start with your real workflow.
               </h2>
@@ -135,16 +151,17 @@ export default function Home() {
                 <Link
                   key={comparison.slug}
                   href={`/compare/${comparison.slug}`}
-                  className="rounded-2xl border border-white/15 bg-white/5 px-4 py-4 text-sm font-semibold transition hover:bg-white/10"
+                  className="group flex items-center justify-between rounded-2xl border border-white/15 bg-white/5 px-4 py-4 text-sm font-semibold transition duration-200 hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/10"
                 >
-                  {comparison.title} <span className="float-right">→</span>
+                  {comparison.title}
+                  <span className="text-accent transition-transform group-hover:translate-x-1">→</span>
                 </Link>
               ))}
             </div>
           </div>
         </section>
 
-        <section className="py-20">
+        <section className="py-20 sm:py-24">
           <Eyebrow>Choose by job</Eyebrow>
           <h2 className="text-3xl font-bold tracking-tight">
             Guides built around business needs
@@ -154,9 +171,9 @@ export default function Home() {
               <Link
                 key={guide.slug}
                 href={`/needs/${guide.slug}`}
-                className="group rounded-3xl border border-line bg-surface p-6 transition hover:border-brand/40"
+                className="group rounded-3xl border border-line bg-surface p-6 elevated transition duration-200 hover:-translate-y-1 hover:border-brand/40 hover:shadow-lg"
               >
-                <span className="text-xs font-bold text-brand">
+                <span className="grid h-8 w-8 place-items-center rounded-full bg-brand/10 text-xs font-bold text-brand">
                   0{index + 1}
                 </span>
                 <h3 className="mt-8 text-xl font-bold tracking-tight">

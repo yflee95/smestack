@@ -126,7 +126,14 @@ export function FinderClient({ products }: { products: SoftwareProduct[] }) {
           {Object.values(answers).filter(Boolean).length}/4 answered
         </span>
       </div>
-      <div className="h-2 overflow-hidden rounded-full bg-line">
+      <div
+        className="h-2 overflow-hidden rounded-full bg-line"
+        role="progressbar"
+        aria-label="Finder progress"
+        aria-valuemin={0}
+        aria-valuemax={questions.length}
+        aria-valuenow={Math.min(step, questions.length)}
+      >
         <div
           className="h-full rounded-full bg-brand transition-all"
           style={{
@@ -136,23 +143,31 @@ export function FinderClient({ products }: { products: SoftwareProduct[] }) {
       </div>
 
       {!completed && question ? (
-        <div className="mt-8 rounded-[2rem] border border-line bg-surface p-6 sm:p-10">
+        <div className="mt-8 rounded-[2rem] border border-line bg-surface p-6 elevated-lg sm:p-10">
           <h2 className="text-3xl font-bold tracking-tight">{question.title}</h2>
           {question.help && (
             <p className="mt-3 text-sm text-muted">{question.help}</p>
           )}
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            {question.options.map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => choose(option)}
-                className="rounded-2xl border border-line bg-background p-5 text-left font-semibold transition hover:border-brand hover:bg-white"
-              >
-                {option}
-                <span className="float-right text-brand">→</span>
-              </button>
-            ))}
+            {question.options.map((option) => {
+              const selected = answers[question.key] === option;
+              return (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => choose(option)}
+                  aria-pressed={selected}
+                  className={`flex items-center justify-between rounded-2xl border p-5 text-left font-semibold elevated transition duration-200 hover:-translate-y-0.5 ${
+                    selected
+                      ? "border-brand bg-brand/5"
+                      : "border-line bg-background hover:border-brand hover:bg-white"
+                  }`}
+                >
+                  {option}
+                  <span className="text-brand">→</span>
+                </button>
+              );
+            })}
           </div>
           {step > 0 && (
             <button
@@ -166,7 +181,7 @@ export function FinderClient({ products }: { products: SoftwareProduct[] }) {
         </div>
       ) : (
         <div className="mt-8">
-          <div className="rounded-[2rem] bg-brand-dark p-7 text-white sm:p-10">
+          <div className="rounded-[2rem] bg-brand-dark p-7 text-white elevated-lg sm:p-10">
             <p className="text-xs font-bold uppercase tracking-[0.16em] text-accent">
               Based on your answers
             </p>
@@ -191,7 +206,8 @@ export function FinderClient({ products }: { products: SoftwareProduct[] }) {
               results.map(({ product, reasons }, index) => (
                 <article
                   key={product.slug}
-                  className="rounded-3xl border border-line bg-surface p-6"
+                  className="reveal rounded-3xl border border-line bg-surface p-6 elevated"
+                  style={{ animationDelay: `${index * 80}ms` }}
                 >
                   <div className="flex flex-wrap items-start justify-between gap-4">
                     <div>
@@ -210,15 +226,22 @@ export function FinderClient({ products }: { products: SoftwareProduct[] }) {
                   </p>
                   <Link
                     href={`/software/${product.slug}`}
-                    className="mt-5 inline-block text-sm font-bold text-brand hover:underline"
+                    className="mt-5 inline-flex items-center gap-2 rounded-full bg-brand/10 px-4 py-2 text-sm font-bold text-brand transition hover:bg-brand hover:text-white"
                   >
-                    Review the evidence →
+                    Review the evidence <span aria-hidden="true">→</span>
                   </Link>
                 </article>
               ))
             )}
           </div>
-          <div className="mt-7 text-center">
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => setStep(questions.length - 1)}
+              className="rounded-full border border-line bg-white px-5 py-2.5 text-sm font-bold"
+            >
+              Change last answer
+            </button>
             <button
               type="button"
               onClick={restart}
