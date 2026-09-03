@@ -13,13 +13,25 @@ function publicSiteUrl() {
   return url.origin;
 }
 
+const SITE_EMAIL = "hello@smestack.my";
+
 export const siteConfig = {
   name: "SME Stack",
   description:
     "Independent, source-backed software comparisons for Malaysian small businesses.",
   url: publicSiteUrl(),
-  email: "hello@smestack.my",
+  email: SITE_EMAIL,
+  leadInbox: leadInbox(SITE_EMAIL),
 };
+
+function leadInbox(fallback: string) {
+  const value = process.env.NEXT_PUBLIC_LEAD_INBOX?.trim();
+  if (!value) return fallback;
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+    return fallback;
+  }
+  return value;
+}
 
 export function absoluteUrl(path: string) {
   return new URL(path, siteConfig.url).toString();

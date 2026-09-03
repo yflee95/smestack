@@ -47,6 +47,12 @@ export default function Home() {
                 >
                   Browse all software
                 </Link>
+                <Link
+                  href="/shortlist"
+                  className="rounded-full px-6 py-3.5 text-sm font-bold text-brand hover:underline"
+                >
+                  Request a human shortlist
+                </Link>
               </div>
               <div className="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-sm text-muted">
                 <span>10 researched products</span>

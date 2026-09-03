@@ -74,3 +74,13 @@ body {
   line-height: 1.75;
   margin-top: 0.75rem;
 }
+
+.field {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  background: var(--surface);
+  padding: 0.75rem 1rem;
+  font: inherit;
+  color: var(--foreground);
+}

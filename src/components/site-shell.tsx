@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { MobileNav } from "@/components/mobile-nav";
-import { siteConfig } from "@/lib/site";
 
 const navigation = [
   { href: "/software", label: "Software" },
@@ -78,9 +77,9 @@ export function SiteFooter() {
             <Link href="/privacy" className="hover:text-white">
               Privacy
             </Link>
-            <a href={`mailto:${siteConfig.email}`} className="hover:text-white">
-              Contact
-            </a>
+            <Link href="/shortlist" className="hover:text-white">
+              Request a shortlist
+            </Link>
           </div>
         </div>
       </div>

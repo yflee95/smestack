@@ -28,8 +28,9 @@ export default function PrivacyPage() {
           ID.
         </p>
         <p>
-          If you email {siteConfig.email}, we receive whatever you include in
-          that message so we can reply.
+          If you email {siteConfig.email} or submit the shortlist request form,
+          we receive the details you typed so we can reply. The form opens your
+          email app; this website does not store the message on a server.
         </p>
         <h2>Cookies</h2>
         <p>

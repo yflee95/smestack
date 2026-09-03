@@ -20,7 +20,7 @@ const securityHeaders = [
       "connect-src 'self' https://plausible.io",
       "frame-ancestors 'none'",
       "base-uri 'self'",
-      "form-action 'self'",
+      "form-action 'self' mailto:",
     ].join("; "),
   },
 ];

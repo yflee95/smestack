@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { FinderClient } from "@/components/finder-client";
 import { Eyebrow, PageContainer } from "@/components/site-shell";
 import { software } from "@/data/software";
@@ -37,6 +38,13 @@ export default function FinderPage() {
             asked for cloud-only or a flexible desktop/partner setup. Only the
             top three matches are shown. If nothing scores, browse the full
             directory instead of treating an empty result as a recommendation.
+          </p>
+          <p className="mt-4 text-sm leading-6 text-muted">
+            Want a person to sanity-check the result against your workflow?{" "}
+            <Link href="/shortlist" className="font-bold text-brand hover:underline">
+              Request a shortlist
+            </Link>
+            .
           </p>
         </aside>
       </section>
