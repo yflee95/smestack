@@ -301,6 +301,7 @@ export const software: SoftwareProduct[] = [
       "Compare payment and app costs, not subscription alone",
     ],
     officialUrl: "https://www.easystore.co/en-my",
+    referralUrl: "https://www.easystore.co?ref=b4c266cd",
     sourceUrl: "https://www.easystore.co/en-my/pricing",
     sourceLabel: "EasyStore Malaysia pricing",
     verifiedAt,

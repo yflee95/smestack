@@ -27,10 +27,9 @@ real, page-specific data and a distinct user task.
 
 ## Monetisation
 
-`referralUrl` is intentionally empty at launch. Only add it after the site owner
-is accepted to the relevant partner programme and reviews its terms. Direct
-official links remain non-sponsored; populated referral links automatically use
-the appropriate sponsored relationship.
+`referralUrl` is added only after a partner programme is approved. EasyStore
+currently has a tracked referral URL; other vendors still use official links.
+Sponsored buttons automatically use `rel="sponsored nofollow"`.
 
 Outbound CTA and finder completion events are exposed to Plausible when
 `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` is configured.

@@ -28,9 +28,10 @@ export default function DisclosurePage() {
         </p>
         <h2>Current launch status</h2>
         <p>
-          Vendor buttons go to the official site until a partner programme
-          gives SME Stack a tracking link. Those links are added through
-          environment variables, not by selling a higher ranking.
+          EasyStore product and comparison buttons use a tracked partner
+          referral link. Other vendor buttons still go to the official site
+          until a programme gives SME Stack a tracking URL. Links are added
+          after approval, not by selling a higher ranking.
         </p>
         <h2>Use your own judgement</h2>
         <p>
