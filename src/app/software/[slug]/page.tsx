@@ -25,8 +25,10 @@ export async function generateMetadata({
   const product = getSoftware((await params).slug);
   if (!product) return {};
   return {
-    title: `${product.name} for Malaysian SMEs: fit, pricing and trade-offs`,
-    description: product.summary,
+    title:
+      product.metaTitle ??
+      `${product.name} for Malaysian SMEs: fit, pricing and trade-offs`,
+    description: product.metaDescription ?? product.summary,
     alternates: { canonical: `/software/${product.slug}` },
     other: { "article:modified_time": product.verifiedAt },
   };

@@ -39,6 +39,21 @@ const empty: FormState = {
 export function ShortlistForm() {
   const [form, setForm] = useState<FormState>(empty);
   const [error, setError] = useState("");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+
+  const fallbackBody = [
+    `Name: ${form.name.trim()}`,
+    `Email: ${form.email.trim()}`,
+    `Company: ${form.company.trim() || "—"}`,
+    `Industry: ${form.industry || "—"}`,
+    `Team size: ${form.size || "—"}`,
+    `Jobs: ${form.jobs.join(", ") || "—"}`,
+    "",
+    form.notes.trim() || "No extra notes.",
+  ].join("\n");
+  const fallbackHref = `mailto:${siteConfig.leadInbox}?subject=${encodeURIComponent(
+    "SME Stack pilot Decision Brief",
+  )}&body=${encodeURIComponent(fallbackBody)}`;
 
   function toggleJob(job: string) {
     setForm((current) => ({
@@ -49,7 +64,7 @@ export function ShortlistForm() {
     }));
   }
 
-  function submit(event: FormEvent) {
+  async function submit(event: FormEvent) {
     event.preventDefault();
     setError("");
     if (form.website.trim()) return;
@@ -67,29 +82,45 @@ export function ShortlistForm() {
       return;
     }
 
-    const body = [
-      `Name: ${form.name.trim()}`,
-      `Email: ${form.email.trim()}`,
-      `Company: ${form.company.trim() || "—"}`,
-      `Industry: ${form.industry}`,
-      `Team size: ${form.size}`,
-      `Jobs: ${form.jobs.join(", ")}`,
-      "",
-      form.notes.trim() || "No extra notes.",
-    ].join("\n");
+    setStatus("sending");
+    try {
+      const response = await fetch("/api/review-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const result = (await response.json()) as { error?: string };
+      if (!response.ok) {
+        throw new Error(result.error || "We could not send this request.");
+      }
 
-    const mailto = `mailto:${siteConfig.leadInbox}?subject=${encodeURIComponent(
-      `SME Stack shortlist: ${form.industry} / ${form.size}`,
-    )}&body=${encodeURIComponent(body)}`;
+      const analyticsWindow = window as Window & {
+        plausible?: (event: string, options?: unknown) => void;
+      };
+      analyticsWindow.plausible?.("Paid review requested", {
+        props: { industry: form.industry, size: form.size },
+      });
+      setStatus("sent");
+    } catch (caught) {
+      setError(
+        caught instanceof Error
+          ? caught.message
+          : "We could not send this request.",
+      );
+      setStatus("idle");
+    }
+  }
 
-    const analyticsWindow = window as Window & {
-      plausible?: (event: string, options?: unknown) => void;
-    };
-    analyticsWindow.plausible?.("Shortlist requested", {
-      props: { industry: form.industry, size: form.size },
-    });
-
-    window.location.href = mailto;
+  if (status === "sent") {
+    return (
+      <div className="rounded-3xl border border-brand/25 bg-brand/5 p-6">
+        <p className="text-xl font-bold tracking-tight">Request received.</p>
+        <p className="mt-3 text-sm leading-6 text-muted">
+          We will first confirm whether the job fits the pilot. You do not pay
+          until scope and delivery date are confirmed by email.
+        </p>
+      </div>
+    );
   }
 
   return (
@@ -232,20 +263,25 @@ export function ShortlistForm() {
       </Field>
 
       {error ? (
-        <p className="text-sm font-semibold text-red-700" role="alert">
-          {error}
-        </p>
+        <div className="rounded-2xl border border-red-200 bg-red-50 p-4 text-sm text-red-800" role="alert">
+          <p className="font-semibold">{error}</p>
+          <a href={fallbackHref} className="mt-2 inline-flex font-bold underline">
+            Send the same request by email instead
+          </a>
+        </div>
       ) : null}
 
       <button
         type="submit"
+        disabled={status === "sending"}
         className="rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg"
       >
-        Open email to request a shortlist <span aria-hidden="true">→</span>
+        {status === "sending" ? "Sending…" : "Request a pilot review"}{" "}
+        <span aria-hidden="true">→</span>
       </button>
       <p className="text-sm leading-6 text-muted">
-        This opens your email app with the details filled in. Nothing is stored
-        on this website. We reply from the inbox we actually monitor.
+        No payment now. We check fit first, then send scope, delivery date and
+        bank-transfer details by email.
       </p>
     </form>
   );

@@ -27,6 +27,12 @@ real, page-specific data and a distinct user task.
 
 ## Monetisation
 
+Free: directory, comparisons, finder, e-Invoice pathfinder (`/e-invoice`), printable
+worksheets (`/kit`).
+
+Paid: pilot Software Decision Brief at RM490 (`/shortlist`), capped at four per
+month. Scope is confirmed before bank-transfer details are sent. Not tax advice.
+
 `referralUrl` is added only after a partner programme is approved. EasyStore
 currently has a tracked referral URL; other vendors still use official links.
 Sponsored buttons automatically use `rel="sponsored nofollow"`.

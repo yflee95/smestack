@@ -24,44 +24,38 @@ export default function Home() {
         <PageContainer>
           <div className="grid items-center gap-14 py-14 sm:py-20 lg:min-h-[680px] lg:grid-cols-[1.08fr_.92fr]">
             <div>
-              <Eyebrow>Malaysia SME software, made simpler</Eyebrow>
+              <Eyebrow>Independent Malaysia SME software research</Eyebrow>
               <h1 className="max-w-3xl text-5xl font-bold leading-[1.03] tracking-[-0.055em] sm:text-6xl lg:text-7xl">
-                Pick software with evidence,{" "}
-                <span className="text-brand">not sales noise.</span>
+                Find software that fits{" "}
+                <span className="text-brand">how your business works.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-muted">
-                Compare accounting, payroll, POS and e-Invoice software for
-                Malaysian businesses. Every profile shows sources, trade-offs
-                and the date we checked it.
+                Answer four questions for a shortlist, or compare accounting,
+                payroll, POS and e-Invoice tools with Malaysian pricing,
+                limitations and source dates visible.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   href="/finder"
                   className="rounded-full bg-brand px-6 py-3.5 text-sm font-bold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg"
                 >
-                  Start the free finder <span aria-hidden="true">→</span>
+                  Find my software <span aria-hidden="true">→</span>
                 </Link>
                 <Link
                   href="/software"
-                  className="rounded-full border border-line bg-white px-6 py-3.5 text-sm font-bold elevated transition duration-200 hover:-translate-y-0.5 hover:border-brand"
+                  className="rounded-full px-5 py-3.5 text-sm font-bold text-brand hover:underline"
                 >
-                  Browse all software
-                </Link>
-                <Link
-                  href="/shortlist"
-                  className="rounded-full px-6 py-3.5 text-sm font-bold text-brand hover:underline"
-                >
-                  Request a human shortlist
+                  Browse the directory
                 </Link>
               </div>
               <div className="mt-10 flex flex-wrap gap-x-6 gap-y-3 text-sm font-medium text-muted">
                 <span className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-                  10 researched products
+                  Sources shown
                 </span>
                 <span className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-                  8 direct comparisons
+                  Review dates visible
                 </span>
                 <span className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-brand" />
@@ -83,7 +77,7 @@ export default function Home() {
                     ["Pay my team correctly", "/needs/payroll-software-for-malaysia"],
                     ["Keep clean accounts", "/needs/accounting-software-for-small-business"],
                     ["Run a shop or cafe", "/needs/pos-software-for-restaurants"],
-                    ["Handle Malaysia e-Invoice", "/needs/e-invoice-software-malaysia"],
+                    ["Handle Malaysia e-Invoice", "/e-invoice"],
                   ].map(([label, href]) => (
                     <Link
                       key={href}
@@ -113,7 +107,7 @@ export default function Home() {
             <div>
               <Eyebrow>Starting shortlists</Eyebrow>
               <h2 className="text-3xl font-bold tracking-tight">
-                Popular with Malaysian SMEs
+                Practical starting points for Malaysian SMEs
               </h2>
             </div>
             <Link
@@ -187,6 +181,34 @@ export default function Home() {
                 </span>
               </Link>
             ))}
+          </div>
+        </section>
+
+        <section className="grid gap-8 rounded-[2rem] border border-line bg-warm/60 px-6 py-10 sm:px-10 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <Eyebrow>When the free shortlist is not enough</Eyebrow>
+            <h2 className="text-3xl font-bold tracking-tight">
+              Get one software decision checked by a person.
+            </h2>
+            <p className="mt-4 max-w-2xl leading-7 text-muted">
+              The pilot Decision Brief turns your workflow into a scored
+              shortlist, demo questions, cost risks and a next-step
+              recommendation. Email in, written brief out. No sales call.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3 lg:justify-end">
+            <Link
+              href="/shortlist/sample"
+              className="rounded-full border border-line-strong bg-white px-5 py-3 text-sm font-bold transition hover:border-brand"
+            >
+              See a sample
+            </Link>
+            <Link
+              href="/shortlist"
+              className="rounded-full bg-brand px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-dark"
+            >
+              Pilot review · RM490
+            </Link>
           </div>
         </section>
       </PageContainer>

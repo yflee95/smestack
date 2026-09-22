@@ -42,7 +42,11 @@ export default function FinderPage() {
           <p className="mt-4 text-sm leading-6 text-muted">
             Want a person to sanity-check the result against your workflow?{" "}
             <Link href="/shortlist" className="font-bold text-brand hover:underline">
-              Request a shortlist
+              Pilot Decision Brief · RM490
+            </Link>
+            . e-Invoice status is a separate free tool:{" "}
+            <Link href="/e-invoice" className="font-bold text-brand hover:underline">
+              pathfinder
             </Link>
             .
           </p>

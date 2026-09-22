@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useMemo, useState } from "react";
+import { StackReadyNote } from "@/components/stackready-note";
 import type {
   BusinessSize,
   SoftwareCategory,
@@ -249,6 +250,9 @@ export function FinderClient({ products }: { products: SoftwareProduct[] }) {
             >
               Start again
             </button>
+          </div>
+          <div className="mx-auto mt-8 max-w-2xl">
+            <StackReadyNote compact />
           </div>
         </div>
       )}

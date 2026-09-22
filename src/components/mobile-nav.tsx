@@ -1,25 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useEffect, useId, useState } from "react";
 
 const links = [
   { href: "/software", label: "Software" },
-  { href: "/compare", label: "Comparisons" },
-  { href: "/needs", label: "By need" },
+  { href: "/e-invoice", label: "e-Invoice" },
   { href: "/finder", label: "Free finder" },
-  { href: "/shortlist", label: "Request a shortlist" },
+  { href: "/shortlist", label: "Paid review" },
 ];
 
 export function MobileNav() {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
   const panelId = useId();
-
-  useEffect(() => {
-    setOpen(false);
-  }, [pathname]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -63,6 +56,7 @@ export function MobileNav() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setOpen(false)}
                   className="flex items-center justify-between rounded-2xl px-4 py-3 text-sm font-semibold transition hover:bg-white"
                 >
                   {item.label}

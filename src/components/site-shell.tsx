@@ -5,8 +5,7 @@ import { SiteLogo } from "@/components/site-logo";
 
 const navigation = [
   { href: "/software", label: "Software" },
-  { href: "/compare", label: "Comparisons" },
-  { href: "/needs", label: "By need" },
+  { href: "/e-invoice", label: "e-Invoice" },
   { href: "/finder", label: "Free finder" },
 ];
 
@@ -41,7 +40,7 @@ export function SiteHeader() {
             href="/shortlist"
             className="hidden rounded-full bg-brand px-4 py-2 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-lg sm:inline-flex"
           >
-            Get a shortlist
+            Paid review
           </Link>
         </div>
       </div>
@@ -74,6 +73,12 @@ export function SiteFooter() {
                 {item.label}
               </Link>
             ))}
+            <Link href="/compare" className="hover:text-white">
+              Comparisons
+            </Link>
+            <Link href="/needs" className="hover:text-white">
+              Guides by need
+            </Link>
           </div>
         </div>
         <div>
@@ -89,7 +94,13 @@ export function SiteFooter() {
               Privacy
             </Link>
             <Link href="/shortlist" className="hover:text-white">
-              Request a shortlist
+              Paid software review
+            </Link>
+            <Link href="/e-invoice" className="hover:text-white">
+              e-Invoice pathfinder
+            </Link>
+            <Link href="/kit" className="hover:text-white">
+              Free worksheets
             </Link>
           </div>
         </div>

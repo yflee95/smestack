@@ -9,6 +9,7 @@ import { getNeedGuide, needGuides } from "@/data/needs";
 import { softwareBySlug } from "@/data/software";
 import { JsonLd } from "@/lib/json-ld";
 import { absoluteUrl } from "@/lib/site";
+import { StackReadyNote } from "@/components/stackready-note";
 
 export function generateStaticParams() {
   return needGuides.map((guide) => ({ slug: guide.slug }));
@@ -179,6 +180,12 @@ export default async function NeedGuidePage({
               Read current IRBM guidance ↗
             </a>
           </section>
+        )}
+
+        {guide.slug === "e-invoice-software-malaysia" && (
+          <div className="mt-6">
+            <StackReadyNote />
+          </div>
         )}
       </article>
     </PageContainer>

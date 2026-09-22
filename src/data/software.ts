@@ -30,6 +30,9 @@ export type SoftwareProduct = {
   verifiedAt: string;
   eInvoicePosition: string;
   featured?: boolean;
+  /** SERP title when GSC shows distinct query clusters (keep honest, not keyword spam). */
+  metaTitle?: string;
+  metaDescription?: string;
 };
 
 const verifiedAt = "2026-09-03";
@@ -104,6 +107,9 @@ export const software: SoftwareProduct[] = [
     eInvoicePosition:
       "Bukku provides Malaysia e-Invoice features. Verify whether your workflow needs direct submission, consolidation or accountant access.",
     featured: true,
+    metaTitle: "Bukku accounting Malaysia: pricing plans & e-Invoice",
+    metaDescription:
+      "Independent Bukku review for Malaysian SMEs: Launch free tier, paid plans from RM35/month, plan limits, e-Invoice and trade-offs—not a vendor brochure.",
   },
   {
     slug: "payrollpanda",
